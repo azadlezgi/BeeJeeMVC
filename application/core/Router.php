@@ -40,7 +40,7 @@ class Router
             if (class_exists($controller_patch)) {
                 $action = $this->params['action'] .'Action';
                 if (method_exists($controller_patch, $action)) {
-                    $controller = new $controller_patch;
+                    $controller = new $controller_patch($this->params);
                     $controller->$action();
                 } else {
                     echo "Method <b>". $action ."</b> not found";

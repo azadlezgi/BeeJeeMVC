@@ -2,11 +2,17 @@
 
 namespace application\core;
 
+use application\core\View;
+
 abstract class Controller
 {
 
-    public function __construct()
+    public $route;
+    public $view;
+
+    public function __construct($route)
     {
-        echo "Hello";
+        $this->route = $route;
+        $this->view = new View($route);
     }
 }
