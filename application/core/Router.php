@@ -43,13 +43,16 @@ class Router
                     $controller = new $controller_patch($this->params);
                     $controller->$action();
                 } else {
-                    echo "Method <b>". $action ."</b> not found";
+                    $errorMessage = "Method <b>". $action ."</b> not found";
+                    View::errorCode(403, $errorMessage);
                 }
             } else {
-                echo "Class <b>". $controller_patch ."</b> not found";
+                $errorMessage = "Class <b>". $controller_patch ."</b> not found";
+                View::errorCode(403, $errorMessage);
             }
         } else {
-            echo "404 Page";
+            $errorMessage = "404 Page not found";
+            View::errorCode(404, $errorMessage);
         }
     }
 
