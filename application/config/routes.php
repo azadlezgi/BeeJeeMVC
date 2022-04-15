@@ -2,17 +2,17 @@
 
 return [
     '' => [
-        'controller'    => 'app',
+        'controller'    => 'common',
         'action'        => 'index',
     ],
 
     'account/login' => [
-        'controller'    => 'acount',
+        'controller'    => 'account',
         'action'        => 'login',
     ],
 
     'account/register' => [
-        'controller'    => 'acount',
+        'controller'    => 'account',
         'action'        => 'register',
     ],
 ];

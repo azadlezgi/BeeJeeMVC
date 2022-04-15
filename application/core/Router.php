@@ -36,11 +36,17 @@ class Router
     public function run() {
 
         if ($this->match()) {
-            $controller = 'application\controllers\\'. ucfirst($this->params['controller']) .'Controller.php';
-            if (class_exists($controller)) {
-
+            $controller_patch = 'application\controllers\\'. ucfirst($this->params['controller']) .'Controller';
+            if (class_exists($controller_patch)) {
+                $action = $this->params['action'] .'Action';
+                if (method_exists($controller_patch, $action)) {
+                    $controller = new $controller_patch;
+                    $controller->$action();
+                } else {
+                    echo "Method <b>". $action ."</b> not found";
+                }
             } else {
-                echo "Class ". $controller ." not found";
+                echo "Class <b>". $controller_patch ."</b> not found";
             }
         } else {
             echo "404 Page";
