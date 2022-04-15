@@ -36,7 +36,12 @@ class Router
     public function run() {
 
         if ($this->match()) {
-            echo "Yes Page";
+            $controller = 'application\controllers\\'. ucfirst($this->params['controller']) .'Controller.php';
+            if (class_exists($controller)) {
+
+            } else {
+                echo "Class ". $controller ." not found";
+            }
         } else {
             echo "404 Page";
         }
