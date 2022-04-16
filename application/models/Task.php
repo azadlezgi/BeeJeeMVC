@@ -54,4 +54,23 @@ class Task extends Model {
         $this->db->query('INSERT INTO task (username, email, description, status) VALUES (:username, :email, :description, :status)', $params);
         return $this->db->lastInsertId();
     }
+
+    public function postEdit($post, $id) {
+        $params = [
+            'id' => $id,
+            'username' => stripinput($post['username']),
+            'email' => stripinput($post['email']),
+            'description' => stripinput($post['description']),
+            'status' => (!empty($post['status']) ? 1 : 0),
+        ];
+        $this->db->query('UPDATE task SET username = :username, email = :email, description = :description, status = :status WHERE task_id = :id', $params);
+        return $id;
+    }
+
+    public function taskData($id) {
+        $params = [
+            'task_id' => $id,
+        ];
+        return $this->db->row('SELECT * FROM task WHERE task_id = :task_id', $params);
+    }
 }

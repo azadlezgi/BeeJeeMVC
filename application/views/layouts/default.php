@@ -21,15 +21,18 @@
 
         <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
             <li><a href="/" class="nav-link px-2 link-secondary">Главная</a></li>
+            <li><a href="/task/index" class="nav-link px-2 link-dark">Список задач</a></li>
             <li><a href="/task/add" class="nav-link px-2 link-dark">Добавить задачу</a></li>
-            <li><a href="#" class="nav-link px-2 link-dark">Pricing</a></li>
-            <li><a href="#" class="nav-link px-2 link-dark">FAQs</a></li>
-            <li><a href="#" class="nav-link px-2 link-dark">About</a></li>
+            <li><a href="/account/login" class="nav-link px-2 link-dark">Авторизация</a></li>
         </ul>
 
         <div class="col-md-3 text-end">
-            <a href="/account/login" class="btn btn-outline-primary me-2">Авторизация</button>
-            <a href="/account/register" class="btn btn-primary">Регистрация</a>
+            <a href="/task/add" class="btn btn-success"><i class="fa fa-plus-square-o" aria-hidden="true"></i> Добавить</a>
+            <?php if (isset($_SESSION['admin'])): ?>
+            <a href="/account/logout" class="btn btn-danger"><i class="fa fa-sign-out" aria-hidden="true"></i> Выход</a>
+            <?php else: ?>
+            <a href="/account/login" class="btn btn-outline-primary"><i class="fa fa-sign-in" aria-hidden="true"></i> Авторизация</a>
+            <?php endif; ?>
         </div>
     </header>
 
@@ -49,7 +52,43 @@
         </ul>
     </footer>
 </div>
+
+
+
+<?php if (isset($_SESSION['admin'])): ?>
+<div class="modal fade" id="confirm-delete"   tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Вы уверены?</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Вы уверены удалть эту задачу?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-bs-dismiss="modal">Отмена</button>
+                <a class="btn btn-danger btn-ok">Удалить</a>
+            </div>
+        </div>
+    </div>
+</div>
+<?php endif; ?>
+
+
+
+<script src="/public/js/jquery-3.6.0.min.js"></script>
 <script src="/public/js/bootstrap.bundle.min.js"></script>
+
+<?php if (isset($_SESSION['admin'])): ?>
+<script>
+    <!--
+    $('#confirm-delete').on('show.bs.modal', function(e) {
+        $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
+    });
+    //-->
+</script>
+<?php endif; ?>
 
 </body>
 </html>

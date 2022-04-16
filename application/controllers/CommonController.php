@@ -11,8 +11,14 @@ class CommonController extends Controller
 {
     public function indexAction() {
 
+
+        $pagination_route = [
+            'controller' => 'task',
+            'action' => 'index'
+        ];
+
         $taskModel = new Task();
-        $pagination = new Pagination($this->route, $taskModel->taskCount());
+        $pagination = new Pagination($pagination_route, $taskModel->taskCount());
 
         $data['pagination'] = $pagination->get();
 
@@ -42,7 +48,7 @@ class CommonController extends Controller
 
         $this->view->patch = "common/index";
         $this->view->render(
-            'Home title',
+            'Главная страница',
             $data
         );
     }

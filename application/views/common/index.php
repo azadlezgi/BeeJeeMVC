@@ -1,7 +1,9 @@
+<h2><?php echo $title; ?></h2>
+
 <?php if ($tastList): ?>
-<div class="list-group home_list">
+<div class="list-group task_list">
     <?php foreach ($tastList as $task): ?>
-    <a href="#" class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
+    <div class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
         <span class="border border-primary rounded-circle short_name"><?php echo $task['short_name']; ?></span>
         <div class="d-flex gap-2 w-100 justify-content-between">
             <div>
@@ -10,7 +12,13 @@
             </div>
             <small class="opacity-50 text-nowrap"><?php echo $task['date']; ?></small>
         </div>
-    </a>
+        <?php if (isset($_SESSION['admin'])): ?>
+        <div class="btn-group btn-group-sm action_buttons" role="group">
+            <a href="/task/edit/<?php echo $task['id']; ?>" class="btn btn-primary" title="Редактировать"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+            <button class="btn btn-danger" data-href="/task/delete/<?php echo $task['id']; ?>" data-bs-toggle="modal" data-bs-target="#confirm-delete" title="Удалить"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+        </div>
+        <?php endif; ?>
+    </div>
     <?php endforeach; ?>
 </div>
 

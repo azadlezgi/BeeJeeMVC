@@ -10,9 +10,24 @@ return [
         'action' => 'index',
     ],
 
+    'task/index' => [
+        'controller'    => 'task',
+        'action'        => 'index',
+    ],
+
+    'task/index/{page:\d+}' => [
+        'controller' => 'task',
+        'action' => 'index',
+    ],
+
     'task/add' => [
         'controller'    => 'task',
         'action'        => 'add',
+    ],
+
+    'task/edit/{id:\d+}' => [
+        'controller' => 'task',
+        'action' => 'edit',
     ],
 
     'account/login' => [
@@ -20,8 +35,8 @@ return [
         'action'        => 'login',
     ],
 
-    'account/register' => [
+    'account/logout' => [
         'controller'    => 'account',
-        'action'        => 'register',
+        'action'        => 'logout',
     ],
 ];
