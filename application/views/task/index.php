@@ -9,6 +9,24 @@
 endif; ?>
 
 <?php if ($tastList): ?>
+
+<div class="row mb-3">
+    <div class="col-md-9">
+
+    </div>
+    <div class="col-md-3">
+        <div class="form-group mb-3">
+            <label for="sort">Сортировка</label>
+            <select class="form-select" id="sort" onchange="location = this.value;">
+                <option value="/task/index"<?php echo ($sort == 0 ? " selected" : ""); ?>>По умолчанию</option>
+                <option value="/task/sort/1"<?php echo ($sort == 1 ? " selected" : ""); ?>>По юзеру</option>
+                <option value="/task/sort/2"<?php echo ($sort == 2 ? " selected" : ""); ?>>По E-mail</option>
+                <option value="/task/sort/3"<?php echo ($sort == 3 ? " selected" : ""); ?>>По статусу</option>
+            </select>
+        </div>
+    </div>
+</div>
+
 <div class="list-group task_list">
     <?php foreach ($tastList as $task): ?>
         <div class="list-group-item list-group-item-action d-flex gap-3 py-3<?php echo ($task['status']==1 ? " list-group-item-success" : ""); ?>" aria-current="true">

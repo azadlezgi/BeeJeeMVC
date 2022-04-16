@@ -41,6 +41,7 @@ class CommonController extends Controller
                     'short_name' => $short_name,
                     'email' => $row['email'],
                     'description' => $row['description'],
+                    'status' => $row['status'],
                     'date' => $date_format
                 ];
             } // foreach

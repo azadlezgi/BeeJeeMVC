@@ -10,12 +10,19 @@ class Task extends Model {
 
     public function taskList($route)
     {
+        $order = [
+            0 => "task_id",
+            1 => "username",
+            2 => "email",
+            3 => "status"
+        ];
+
         $max = 10;
         $params = [
             'max' => $max,
             'start' => (((isset($route['page']) ? $route['page'] : 1) - 1) * $max),
         ];
-        return $this->db->row('SELECT * FROM task ORDER BY task_id DESC LIMIT :start, :max', $params);
+        return $this->db->row('SELECT * FROM task ORDER BY '. $order[(isset($route['sort']) ? $route['sort'] : 0)] .' DESC LIMIT :start, :max', $params);
 
     }
 

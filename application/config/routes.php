@@ -20,6 +20,11 @@ return [
         'action' => 'index',
     ],
 
+    'task/sort/{sort:\d+}' => [
+        'controller' => 'task',
+        'action' => 'index',
+    ],
+
     'task/add' => [
         'controller'    => 'task',
         'action'        => 'add',

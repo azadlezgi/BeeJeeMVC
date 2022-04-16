@@ -41,6 +41,8 @@ class TaskController extends Controller
             } // foreach
         } // if
 
+        $data['sort'] = (isset($this->route['sort']) ? $this->route['sort'] : 0);
+
         $this->view->render(
             'Страница список задачи',
             $data
