@@ -133,18 +133,22 @@ class TaskController extends Controller
     }
 
     public function deleteAction() {
-        $taskModel = new Task();
+        if (!isset($_SESSION['admin'])) {
+            $this->view->redirect('/account/login');
+        } else {
+            $taskModel = new Task();
 
-        $query = $taskModel->taskData($this->route['id']);
-        if (!$query) {
+            $query = $taskModel->taskData($this->route['id']);
+            if (!$query) {
+                $this->view->redirect('/task/index');
+            }
+
+            $taskModel->taskDelete($this->route['id']);
+
+            $_SESSION['success'] = $this->view->message('success', 'Задача успешно удалена');
+
             $this->view->redirect('/task/index');
-        }
-
-        $taskModel->taskDelete($this->route['id']);
-
-        $_SESSION['success'] = $this->view->message('success', 'Задача успешно удалена');
-
-        $this->view->redirect('/task/index');
+        } //session true
     }
 
 }
