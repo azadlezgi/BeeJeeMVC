@@ -1,5 +1,13 @@
 <h2><?php echo $title; ?></h2>
 
+<?php if (isset($_SESSION['success'])): ?>
+    <div class="alert alert-success" role="alert">
+        <?php echo $_SESSION['success']['message']; ?>
+    </div>
+<?php
+    unset($_SESSION['success']);
+endif; ?>
+
 <?php if ($tastList): ?>
 <div class="list-group task_list">
     <?php foreach ($tastList as $task): ?>

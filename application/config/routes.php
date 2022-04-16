@@ -30,6 +30,11 @@ return [
         'action' => 'edit',
     ],
 
+    'task/delete/{id:\d+}' => [
+        'controller' => 'task',
+        'action' => 'delete',
+    ],
+
     'account/login' => [
         'controller'    => 'account',
         'action'        => 'login',

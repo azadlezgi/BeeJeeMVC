@@ -73,4 +73,12 @@ class Task extends Model {
         ];
         return $this->db->row('SELECT * FROM task WHERE task_id = :task_id', $params);
     }
+
+    public function taskDelete($id) {
+        $params = [
+            'id' => $id,
+        ];
+        $this->db->query('DELETE FROM task WHERE task_id = :id', $params);
+        return $id;
+    }
 }
