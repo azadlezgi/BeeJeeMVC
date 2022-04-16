@@ -3,19 +3,20 @@
 namespace application\controllers;
 
 use application\core\Controller;
+use application\models\Task;
 
 class CommonController extends Controller
 {
     public function indexAction() {
-        $data = [
-            'name' => 'Azad',
-            'age' => 36
-        ];
+
+        $taskModel = new Task();
+        $query = $taskModel->taskList();
+
+        debug( $query );
 
         $this->view->patch = "common/index";
         $this->view->render(
             'Home title',
-            $data
         );
     }
 }
