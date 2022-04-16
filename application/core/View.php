@@ -28,6 +28,9 @@ class View
         }
     }
 
+    public function message($status, $message) {
+        return ['status' => $status, 'message' => $message];
+    }
 
     public function redirect($url) {
         header('location: '. $url);

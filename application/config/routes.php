@@ -5,6 +5,10 @@ return [
         'controller'    => 'common',
         'action'        => 'index',
     ],
+    'common/index/{page:\d+}' => [
+        'controller' => 'common',
+        'action' => 'index',
+    ],
 
     'task/add' => [
         'controller'    => 'task',
